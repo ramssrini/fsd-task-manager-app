@@ -1,0 +1,56 @@
+
+
+<div class="row">
+    <div class="col-lg-4">
+      <b>Task:</b> <input [(ngModel)]="taskSearchText">
+    </div>
+    <div class="col-lg-4">
+          <b>ParentTask:</b> <input [(ngModel)]="parentTaskSearchText">
+    </div>
+    <div class="col-lg-4">
+      <b>Priority:</b> <input [(ngModel)]="priorityTaskSearchText">
+</div>
+</div>
+
+<br>
+      <div class="row" *ngFor="let taskItem of taskList | filter : taskSearchText | filterParentTask : parentTaskSearchText |  filterTaskByPriority :priorityTaskSearchText">
+        <div class="col">
+          <b>Task</b> <br>
+          <div class="card">
+            <div class="card-header" >
+              <h5 class="card-title">{{taskItem.taskDesc}}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col">
+          <b>Parent</b> <br>
+          <div class="card">
+            <div class="card-header" >
+              <h5 class="card-title">{{taskItem.parentTaskDesc}}</h5>
+            </div>
+          </div>
+        </div>
+
+        <div class="col col-lg-1">
+          <b>Priority</b> <br>{{taskItem.priority}}
+        </div>
+
+        <div class="col col-lg-1">
+          <b>Start</b> <br>
+          {{taskItem.startDate}}
+        </div>
+
+        <div class="col col-lg-1">
+          <b>End</b> <br>
+          {{taskItem.endDate}}
+        </div>
+
+        <div class="col col-lg-1">
+          <br><button class="btn" type="button" id="button-edit"><a routerLink="/updateTask">Edit</a></button>
+        </div>
+        
+        <div class="col col-lg-1">
+          <br><button class="btn" type="button" id="button-end">End Task</button>
+        </div>
+      </div>
